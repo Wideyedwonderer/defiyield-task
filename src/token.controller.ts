@@ -14,7 +14,7 @@ import { DEFAULT_ADDRESS, TOKEN_ADDRESSES } from './constants/config';
      }
   
     @httpGet('/')
-    public getDefaultEthAddressInfo() {
+    public getDefaultEthAddresxwsInfo() {
        return this.tokenService.getDefaultEthAddressInfo(DEFAULT_ADDRESS);
     }
   

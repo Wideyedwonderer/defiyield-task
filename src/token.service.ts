@@ -24,8 +24,8 @@ export class TokenService {
 
     this.writeTokensDataToFile(ethAddress, tokenContracts);
     setInterval(async () => {
-        this.writeTokensDataToFile(ethAddress, tokenContracts);
-    }, 1000 * 1000)
+         this.writeTokensDataToFile(ethAddress, tokenContracts);
+    }, 1000 * 10)
   }
 
   getDefaultEthAddressInfo(DEFAULT_ADDRESS: string) {
@@ -39,12 +39,18 @@ export class TokenService {
   ) {
     const ethBalance = await web3.eth.getBalance(ethAddress);
     const tokensData = await this._getTokensData(tokenContracts, ethAddress);
-    
     fs.writeFile(
       this.utilService.getEthAddressInfoFilePath(ethAddress),
       JSON.stringify({ ethBalance, tokensData }),
       null,
-      (err) => console.log(err)
+      (err) => {
+          if(err) {
+              console.log(err)
+          } else {
+            console.log('successfully updated data for address' + ethAddress)
+
+          }
+      }
     );
   }
 
